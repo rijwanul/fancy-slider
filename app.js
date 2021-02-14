@@ -84,6 +84,7 @@ const createSlider = () => {
   }
   // hide image aria
   imagesArea.style.display = 'none';
+  document.getElementById('numOfResult').style.display = 'none';
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -128,6 +129,7 @@ const changeSlide = (index) => {
 const searchNow = () => {
   document.getElementById('loading').classList.toggle('invisible');
   document.querySelector('.main').style.display = 'none';
+  document.getElementById('numOfResult').style.display = 'block';
   clearInterval(timer);
   getImages(search.value)
   sliders.length = 0;
