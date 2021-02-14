@@ -135,7 +135,4 @@ search.addEventListener('keyup', function (event) {
   if (event.code === "Enter"){
     searchNow();
   }
-  else {
-    document.getElementById('console').innerText=event;
-  }
 })
