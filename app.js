@@ -1,3 +1,7 @@
+// Extra Features:
+// 1. Alert if no result found. 
+// 2. Loading Animation. 
+// 3. Dropdown list to select how many result is needed. 
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
@@ -16,6 +20,11 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
+  document.getElementById('loading').classList.toggle('invisible');
+  if (images.length <= 0) {
+    alert("No results found");
+    return;
+  }
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -30,7 +39,8 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
+  const numOfImg = parseInt(document.getElementById('numOfResult').value) || 20;
+  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true&per_page=${numOfImg}`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
@@ -45,7 +55,6 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    // alert('Hey, Already added !')
     sliders.splice(item, 1);
   }
 }
@@ -117,10 +126,15 @@ const changeSlide = (index) => {
 }
 
 const searchNow = () => {
+  document.getElementById('loading').classList.toggle('invisible');
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   getImages(search.value)
   sliders.length = 0;
+}
+
+const numOfImage = () => {
+  searchNow();
 }
 
 searchBtn.addEventListener('click', function () {

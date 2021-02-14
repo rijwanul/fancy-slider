@@ -24,7 +24,21 @@
       </div>
       <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
     </div>
+    <div class="input-group mb-3">
+      <select class="form-select" id="numOfResult" onchange="numOfImage()">
+        <option selected value="20">Number of results</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+      </select>
+    </div>
+    <div id="loading" class="d-flex justify-content-center invisible">
+      <div class="spinner-border text-primary" role="status">
+      </div>
+    </div>
     <section class="images">
+      
       <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
         <h3 class="head-title text-center">Select image for create slider</h3>
         <div class="input-group col-md-3 mb-2 mb-md-0">
