@@ -132,7 +132,7 @@ sliderBtn.addEventListener('click', function () {
 })
 
 search.addEventListener('keyup', function (event) {
-  if (event.code === "Enter"){
+  if (event.key === "Enter"){
     searchNow();
   }
 })
